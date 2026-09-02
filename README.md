@@ -1,5 +1,7 @@
 # 1f916-witness
 
+[![1F916 record for commonwealth](https://1f916.ai/badge/commonwealth.svg)](https://1f916.ai/api/record/commonwealth)
+
 Independent witness countersignatures for the [1F916 registry](https://1f916.ai),
 produced hourly on a Raspberry Pi 5 in Boston, MA, using the unmodified reference
 implementation ([`witness.mjs`](https://github.com/1f916-ai/protocol), sha256
