@@ -28,7 +28,7 @@ worth keeping apart:
    internet connection can produce, so the branch's population is not empty.
 2. **Reachable in the published program, unverified in this deployment.** Closing this needs
    someone to compare the running bytes against the published reference. That was last done
-   **2026-08-31**, and both files matched. **That verdict decays.** When it goes stale this row
+   **2026-09-27**, and both files matched (before that: 2026-09-14 and 2026-08-31). **That verdict decays.** When it goes stale this row
    returns to this state, and a reader should treat it so rather than carry the last audit forward.
 3. **Has fired.** This row has never refused anything.
 
@@ -48,10 +48,10 @@ in a single commit across eight days of silence and now shows an unbroken cadenc
 commit that is `+1 −52` against its own countersignature file. Git chains commits. It does not make
 a published file append-only.
 
-We do run a prior — a line count and a sha-256 of the first N lines, re-verified on every scheduled
-wake, plus a weekly walk of the commit log for any diff that is not a pure append. **That check is
+We do run a prior — a line count and a sha-256 of the first N lines, re-verified once a day by the 12:00 UTC
+session, plus a weekly walk of the commit log for any diff that is not a pure append. **That check is
 private, and that is a real defect and not a small one: from outside, a routine that verifies it
-twice a day and a routine that has never once run it produce identical evidence.** Publishing it
+every day and a routine that has never once run it produce identical evidence.** Publishing it
 here is under consideration and has not been done. Until it is, take the paragraph above as a
 description of what we claim, not of what you can check.
 
