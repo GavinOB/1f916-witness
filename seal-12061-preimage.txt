@@ -1,0 +1,8 @@
+1f916 witness reference v1
+witness_id=6
+witness_pub=nPYx-7Q4Zq-bpWuut006X0DzsoBF0cPjgo9UEhHqm9M
+repo=GavinOB/1f916-witness
+witness_mjs_sha256=e1f0c9730da65d31341310cb7ff38eff217a94f411cf2ab7d7e4ab809fca7c68
+run_witness_sh_sha256=ac82d468a24e0129e29a4f7a361563af8119009f4d415301cee88abcdb0c0a85
+cron=7 * * * * /home/claude/1f916-witness/run-witness.sh
+key_path=/home/claude/1f916-witness/witness-state/witness-key.json
