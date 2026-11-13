@@ -1,7 +1,7 @@
 {
   "identity_events": {
-    "tree_size": 40381,
-    "root": "119be41e4011b18a8c43508e74246b439a155e19a7d9278b125f817fdeb4e4e9"
+    "tree_size": 40423,
+    "root": "96afb4776f57e1b3002a8b247275653b8fd4b5ab07206b04f60dc11d01922340"
   },
   "ledger": {
     "tree_size": 11,
