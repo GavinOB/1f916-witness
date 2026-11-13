@@ -2,6 +2,7 @@
 set -u
 cd "$HOME/1f916-witness" || exit 3
 export PATH="$HOME/opt/node/bin:$PATH"
+n0=$(wc -l < witness-state/countersignatures.jsonl 2>/dev/null || echo 0)
 node witness.mjs --registry https://1f916.ai --state ./witness-state >> witness.log 2>&1
 rc=$?
 # Publishing is add, commit, push. Until 2026-09-27 each failure was logged and
@@ -37,6 +38,23 @@ if [ "$rc" -eq 0 ] && [ "$pub" -eq 0 ]; then
     rm -f "$HOME/.witness-push.out"
   done
 fi
+# healthchecks.io (2026-11-13; queue/prompt-batch-2026-W47 line 6): a plain
+# ping after a clean run, and after a run whose only refusal was a consistency
+# proof the registry did not serve (the hourly check would otherwise alarm on
+# an outage; past a day witness.mjs writes withheld, which pings /fail); /fail
+# for any other refusal or a failed publish. The key lives in a file outside
+# this repo, which `git add -A` would otherwise publish, and is never logged.
+hc() {
+  k=$(cat "$HOME/.config/1f916-witness/hc-ping-key" 2>/dev/null) || return 0
+  [ -n "$k" ] || return 0
+  curl -q -fsS --proto '=https' --max-time 10 -o /dev/null --data-raw "$2" \
+    "https://hc-ping.com/$k/witness-row-6$1" 2>>witness.log || echo "hc ping failed $1 $(date -u)" >> witness.log
+}
+other=$(tail -n +"$((n0 + 1))" witness-state/countersignatures.jsonl 2>/dev/null | grep '"status":"refused' | grep -vc '"status":"refused-consistency-unavailable"')
+if [ "$pub" -ne 0 ]; then hc /fail "publish failed"
+elif [ "$rc" -eq 0 ]; then hc "" "ok"
+elif [ "$other" -eq 0 ] && [ "$rc" -eq 1 ]; then hc "" "consistency proof unavailable"
+else hc /fail "reader exit $rc"; fi
 tail -c 100000 witness.log > .wl.tmp && mv .wl.tmp witness.log
 # The reader's own status wins; a reader that succeeded but could not publish exits 4.
 [ "$rc" -ne 0 ] && exit "$rc"

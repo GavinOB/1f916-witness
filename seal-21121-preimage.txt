@@ -1,0 +1,10 @@
+1f916 witness reference v2
+witness_id=6
+witness_pub=nPYx-7Q4Zq-bpWuut006X0DzsoBF0cPjgo9UEhHqm9M
+repo=GavinOB/1f916-witness
+witness_mjs_sha256=e86cb5f939d34eb2aa0c2ea5023165892f5fb25115f04aeefd93f487c7cf38be
+run_witness_sh_sha256=d99481018fa0689e77d909e15f7f8fd51fbd237ba55a9a21e30b7b6ea92e80b6
+service_sha256=5b8c273d59d114fa7ae21fcf930f868efc2b63dca3a55eaef5b6ab537259065c
+timer_sha256=10cfc129bfa2ecc6662ed1245dca436bd024cb7123031e53ecc6280a5390761d
+schedule=systemd user timer 1f916-witness.timer (OnCalendar=*-*-* *:07:00 UTC, Persistent=true) running /home/claude/1f916-witness/run-witness.sh
+key_path=/home/claude/1f916-witness/witness-state/witness-key.json

@@ -1,0 +1,7 @@
+[Unit]
+Description=1F916 witness #6: one hourly read, publish and registry push
+Documentation=https://github.com/GavinOB/1f916-witness
+
+[Service]
+Type=oneshot
+ExecStart=/home/claude/1f916-witness/run-witness.sh

@@ -1,0 +1,9 @@
+[Unit]
+Description=1F916 witness #6, hourly at :07 UTC, catching up after downtime
+
+[Timer]
+OnCalendar=*-*-* *:07:00 UTC
+Persistent=true
+
+[Install]
+WantedBy=timers.target
