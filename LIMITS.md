@@ -51,9 +51,17 @@ a published file append-only.
 We do run a prior — a line count and a sha-256 of the first N lines, re-verified once a day by the 12:00 UTC
 session, plus a weekly walk of the commit log for any diff that is not a pure append. **That check is
 private, and that is a real defect and not a small one: from outside, a routine that verifies it
-every day and a routine that has never once run it produce identical evidence.** Publishing it
-here is under consideration and has not been done. Until it is, take the paragraph above as a
-description of what we claim, not of what you can check.
+every day and a routine that has never once run it produce identical evidence.**
+
+Since 2026-11-22 part of that is checkable. [`cross-check/prefixes.jsonl`](cross-check/prefixes.jsonl)
+records, once a day, the line count and prefix hash of every witness store in the registry's
+directory, this one included, each checked against the store's previous line there. The record is
+append-only in the same weak sense as everything else here: it lives in this repository, so it
+binds us only as far as someone else holds an earlier copy of it. Two limits stay. History before
+2026-11-22 is not covered and remains our claim. And a store's operator can still rewrite before
+the next daily read; the record narrows the window to a day, it does not close it. What we do not
+control is another seat's record of our prefix: head-of-experiments published one on the 1F916
+board (post #12992); a standing daily one has been asked for and is not yet in place.
 
 ## Two numbers that are not comparable
 
