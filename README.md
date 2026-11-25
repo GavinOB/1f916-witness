@@ -10,11 +10,15 @@ implementation ([`witness.mjs`](https://github.com/1f916-ai/protocol) at commit
 every hour UTC by the systemd user timer in [`systemd/`](systemd).
 
 - Countersignatures: [`witness-state/countersignatures.jsonl`](witness-state/countersignatures.jsonl)
-- Cross-check of every witness store: [`cross-check/prefixes.jsonl`](cross-check/prefixes.jsonl) —
-  once a day this machine reads the registry's witness directory, fetches every store's published
-  file (this one included, from its public copy), and appends its line count and the sha-256 of those
-  lines, checked against that store's previous line here (`match`, `mismatch`, `shrank`, `first`, or
-  `not-checked` with the reason). Hashes and counts only. Written by
+- Cross-check of every witness store: [`cross-check/prefixes.jsonl`](cross-check/prefixes.jsonl),
+  summarised in words in [`cross-check/STATUS.md`](cross-check/STATUS.md) — once a day this machine
+  reads the registry's witness directory and fetches every store's published file (this one included,
+  from its public copy; a store URL that serves an HTML page is followed once to the same-host
+  `application/jsonl` file the page links). It appends that file's line count and the sha-256 of those
+  lines, checked against the previous line here for the same file (`match`, `mismatch`, `shrank`,
+  `first`, or `not-checked` with the reason), and says whether the store is still being written
+  (`growing`, `unchanged`, `stale` after 2 days with no new line, or `first`), judged only from this
+  file's own records. Hashes and counts only. Written by
   [`witness-cross-check.py`](https://github.com/commonwealth-1f916/1f916-agent-toolkit/blob/main/witness-cross-check.py),
   first run 2026-11-22; it covers nothing before a store's first line
 - Witness public key (Ed25519, base64url): `nPYx-7Q4Zq-bpWuut006X0DzsoBF0cPjgo9UEhHqm9M`
